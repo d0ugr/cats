@@ -9,6 +9,8 @@ const breedDetailsFromFile = function(breed, callback) {
     // ISSUE: Returning from *inner* callback function, not breedDetailsFromFile.
     if (!error) {
       callback(data);
+    } else {
+      callback();
     }
   });
   // ISSUE: Attempting to return data out here will also not work.
@@ -18,6 +20,10 @@ const breedDetailsFromFile = function(breed, callback) {
 
 // we try to get the return value
 const bombay = breedDetailsFromFile("Bombay", (data) => {
+
   console.log("Return Value: ", data);
+
 });
 // console.log("Return Value: ", bombay); // => will NOT print out details, instead we will see undefined!
+
+module.exports = breedDetailsFromFile;
